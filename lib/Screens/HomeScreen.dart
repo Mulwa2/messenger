@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:messenger/components/Icon_buttons.dart';
 import 'package:messenger/components/RandomPicker.dart';
 import 'package:messenger/components/avatar.dart';
+import 'package:messenger/components/glowing_action%20_button.dart';
 import '../Pages/calls.dart';
 import '../Pages/contacts.dart';
 import '../Pages/messanges.dart';
@@ -72,8 +73,11 @@ class HomeScreen extends StatelessWidget {
           return pages[pageIndex.value];
         },
       ),
-      bottomNavigationBar: Bottombar(
-        onItemSelacted: _ooNavigationItemSelected,
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Bottombar(
+          onItemSelacted: _ooNavigationItemSelected,
+        ),
       ),
     );
   }
@@ -125,6 +129,11 @@ class _BottombarState extends State<Bottombar> {
               icon: CupertinoIcons.bell_solid,
               lable: 'Notifications',
             ),
+            GlowingActionButton(
+                size: 54,
+                color: AppColors.secondary,
+                icon: CupertinoIcons.add,
+                onPressed: () {}),
             _NavigationBarItem(
               isSelected: (selectedIndex == 2),
               onTap: handleItemSelected,
@@ -172,7 +181,7 @@ class _NavigationBarItem extends StatelessWidget {
         onTap(index);
       },
       child: SizedBox(
-        height: 60,
+        width: 70,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

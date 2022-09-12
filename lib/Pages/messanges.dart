@@ -2,6 +2,7 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:messenger/Models/messages_data.dart';
+import 'package:messenger/Screens/chat_screen.dart';
 import 'package:messenger/components/RandomPicker.dart';
 import 'package:messenger/theme.dart';
 
@@ -46,83 +47,88 @@ class _MessageTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Avatar.medium(
-            url: messagesData.profilePicture,
-          ),
-        ),
-        Expanded(
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Text(
-                    messagesData.senderName,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      letterSpacing: 0.2,
-                      wordSpacing: 1.5,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                  child: Text(
-                    messagesData.message,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                        fontSize: 13, color: AppColors.textFaded),
-                  ),
-                ),
-              ],
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(chatScreen.route(messagesData));
+      },
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Avatar.medium(
+              url: messagesData.profilePicture,
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              const SizedBox(
-                height: 4,
-              ),
-              Text(
-                messagesData.dateMessage.toUpperCase(),
-                style: const TextStyle(
-                    fontSize: 11,
-                    letterSpacing: -0.2,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textFaded),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Container(
-                width: 18,
-                height: 18,
-                decoration: const BoxDecoration(
-                  color: AppColors.secondary,
-                  shape: BoxShape.circle,
-                ),
-                child: const Center(
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
-                  "1",
-                  style: TextStyle(fontSize: 10, color: AppColors.textLigth),
-                )),
-              )
-            ],
+                      messagesData.senderName,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        letterSpacing: 0.2,
+                        wordSpacing: 1.5,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                    child: Text(
+                      messagesData.message,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                          fontSize: 13, color: AppColors.textFaded),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        )
-      ],
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  messagesData.dateMessage.toUpperCase(),
+                  style: const TextStyle(
+                      fontSize: 11,
+                      letterSpacing: -0.2,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textFaded),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Container(
+                  width: 18,
+                  height: 18,
+                  decoration: const BoxDecoration(
+                    color: AppColors.secondary,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Center(
+                      child: Text(
+                    "1",
+                    style: TextStyle(fontSize: 10, color: AppColors.textLigth),
+                  )),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
