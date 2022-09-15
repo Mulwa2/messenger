@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:messenger/Screens/login.dart';
 import 'package:messenger/theme.dart';
 
 import 'Screens/HomeScreen.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: appTheme.light,
       darkTheme: appTheme.dark,
       themeMode: ThemeMode.light,
-      home: HomeScreen(),
+      home: const MyLogin(),
     );
   }
 }
